@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import AddInstructor from './components/AddInstructor';
+import AddClass from './components/addClass';
+import AddPackage from './components/addPackage';
+import AddCustomer from './components/addCustomer';
 
 function App() {
+  const [view, setView] = useState('instructor');
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>YogiTrack</h1>
       </header>
+      <nav>
+        <button onClick={() => setView('instructor')}>Add Instructor</button>
+        <button onClick={() => setView('class')}>Add Class</button>
+        <button onClick={() => setView('package')}>Add Package</button>
+        <button onClick={() => setView('customer')}>Add Customer</button>
+      </nav>
+      <main>
+        {view === 'instructor' && <AddInstructor />}
+        {view === 'class' && <AddClass />}
+        {view === 'package' && <AddPackage />}
+        {view === 'customer' && <AddCustomer />}
+      </main>
     </div>
   );
 }
